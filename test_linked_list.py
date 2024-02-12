@@ -2,8 +2,23 @@ import pytest
 from linked_list import Node, LinkedList
 
 
-@pytest.mark.parametrize("data, expected_data", [(5, 5), (10, 10)])
-def test_node(data, expected_data, capsys):
+def test_cr(capsys):
+    with capsys.disabled():
+        print("\n")
+    captured = capsys.readouterr()
+    print(captured.out)
+
+
+@pytest.mark.parametrize(
+    "description, data, expected_data",
+    [("Node:constructor:number", 5, 5), ("Node:constructor:text", "ten", "ten")],
+)
+def test_node(description, data, expected_data, capsys):
+    with capsys.disabled():
+        print(description)
+    captured = capsys.readouterr()
+    print(captured.out)
+
     node = Node(data)
     assert node.get_data() == expected_data
     assert node.get_next() is None
@@ -15,17 +30,26 @@ def test_node(data, expected_data, capsys):
 
 
 @pytest.mark.parametrize(
-    "nodes, expected_first_data, expected_prev_to_last_data, expected_last_data",
+    "description, nodes, expected_first_data, expected_prev_to_last_data, expected_last_data",
     [
-        ([], None, None, None),
-        ([Node(5)], 5, None, 5),
-        ([1, 2], 1, 1, 2),
-        ([1, 2, 3, 4, 5], 1, 4, 5),
+        ("LinkedList:empty", [], None, None, None),
+        ("LinkedList:from Node", [Node(5)], 5, None, 5),
+        ("LinkedList:short", [1, 2], 1, 1, 2),
+        ("LinkedList:normal length", [1, 2, 3, 4, 5], 1, 4, 5),
     ],
 )
 def test_linked_list(
-    nodes, expected_first_data, expected_prev_to_last_data, expected_last_data, capsys
+    description,
+    nodes,
+    expected_first_data,
+    expected_prev_to_last_data,
+    expected_last_data,
+    capsys,
 ):
+    with capsys.disabled():
+        print(description)
+    captured = capsys.readouterr()
+    print(captured.out)
     linked_list = LinkedList()
     for node in nodes:
         linked_list.push(node)
@@ -53,8 +77,21 @@ def test_linked_list(
     print(captured.out)
 
 
-@pytest.mark.parametrize("nodes", [[], [1], [1, 2], [1, 2, 3]])
-def test_pop(nodes, capsys):
+@pytest.mark.parametrize(
+    "description, nodes",
+    [
+        ("LinkedList.pop:empty", []),
+        ("LinkedList.pop:single", [1]),
+        ("LinkedList.pop:short", [1, 2]),
+        ("LinkedList.pop:normal length", [1, 2, 3]),
+    ],
+)
+def test_pop(description, nodes, capsys):
+    with capsys.disabled():
+        print(description)
+    captured = capsys.readouterr()
+    print(captured.out)
+
     linked_list = LinkedList()
     for node in nodes:
         linked_list.push(node)
