@@ -37,7 +37,7 @@ def test_linked_list(
 
     try:
         assert (
-            linked_list.get_previoust_to_last().get_data() == expected_prev_to_last_data
+            linked_list.get_previous_to_last().get_data() == expected_prev_to_last_data
         )
     except AttributeError:
         assert expected_prev_to_last_data is None

@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, data, next_node = None):
+    def __init__(self, data, next_node=None):
         self.__data = data
         self.__next_node = next_node
 
@@ -17,7 +17,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self, start = None):
+    def __init__(self, start=None):
         if not (isinstance(start, Node) or start == None):
             start = Node(start)
         self.__first_node = start
@@ -25,13 +25,13 @@ class LinkedList:
 
     def is_empty(self):
         return self.__first_node is None and self.__last_node is None
-            
+
     def get_first(self):
         return self.__first_node
 
     def get_last(self):
         return self.__last_node
-    
+
     def push(self, node):
         if isinstance(node, Node):
             node.set_next(None)
@@ -49,10 +49,10 @@ class LinkedList:
             self.__first_node = None
             self.__last_node = None
             return
-        self.__last_node = self.get_previoust_to_last()
+        self.__last_node = self.get_previous_to_last()
         self.__last_node.set_next(None)
 
-    def get_previoust_to_last(self):
+    def get_previous_to_last(self):
         node = self.__first_node
         if node == None or node.get_next() is None:
             return None
@@ -66,7 +66,7 @@ class LinkedList:
         if self.is_empty():
             print("The list is empty.")
             return
-        
+
         arrow = " -> "
         printout = "START: "
         node = self.__first_node
@@ -76,7 +76,7 @@ class LinkedList:
                 break
             else:
                 node = node.get_next()
-        printout = printout[:-len(arrow)] + " :END"
+        printout = printout[: -len(arrow)] + " :END"
         print(printout)
 
 
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     print("the last:")
     linked_list.get_last().log()
     print("previous to the last:")
-    linked_list.get_previoust_to_last().log()
+    linked_list.get_previous_to_last().log()
     print("push data:")
     linked_list.push("Theo")
     linked_list.log()
@@ -121,7 +121,7 @@ if __name__ == "__main__":
     print("the last:")
     linked_list.get_last().log()
     print("previous to the last:")
-    linked_list.get_previoust_to_last().log()
+    linked_list.get_previous_to_last().log()
     print("pop:")
     while not linked_list.is_empty():
         linked_list.pop()
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     print("the last:")
     linked_list.get_last().log()
     print("previous to the last:")
-    prev_to_last = linked_list.get_previoust_to_last()
+    prev_to_last = linked_list.get_previous_to_last()
     if prev_to_last == None:
         print(None)
     else:
@@ -159,7 +159,7 @@ if __name__ == "__main__":
     else:
         last.log()
     print("previous to the last:")
-    prev_to_last = linked_list.get_previoust_to_last()
+    prev_to_last = linked_list.get_previous_to_last()
     if prev_to_last == None:
         print(None)
     else:
@@ -168,9 +168,3 @@ if __name__ == "__main__":
     if linked_list.is_empty():
         linked_list.pop()
         linked_list.log()
-
-
-
-
-
-
